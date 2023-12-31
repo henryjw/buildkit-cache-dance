@@ -13,22 +13,22 @@ jobs:
       - name: Cache var-cache-apt
         uses: actions/cache@v3
         with:
-          path: ~/var-cache-apt
+          path: var-cache-apt
           key: var-cache-apt-${{ hashFiles('.github/workflows/test/Dockerfile',  '.github/workflows/test.yml') }}
       - name: Cache var-lib-apt
         uses: actions/cache@v3
         with:
-          path: ~/var-lib-apt
+          path: var-lib-apt
           key: var-lib-apt-${{ hashFiles('.github/workflows/test/Dockerfile', '.github/workflows/test.yml') }}
       - name: inject var-cache-apt into docker
         uses: ./
         with:
-          cache-source: ~/var-cache-apt
+          cache-source: var-cache-apt
           cache-target: /var/cache/apt
       - name: inject var-lib-apt into docker
         uses: ./
         with:
-          cache-source: ~/var-lib-apt
+          cache-source: var-lib-apt
           cache-target: /var/lib/apt
       - name: Build
 #        exec docker buildx build --load --secret id=npmrc,src=$HOME/.npmrc -t comment-service:1.0 -f ./apps/comment-service/Dockerfile . $@

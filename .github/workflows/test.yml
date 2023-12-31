@@ -18,12 +18,12 @@ jobs:
         uses: actions/cache@v3
         with:
           path: var-cache-apt
-          key: var-cache-apt-${{ hashFiles('.github/workflows/test/Dockerfile') }}
+          key: var-cache-apt-${{ hashFiles('.github/workflows/test/Dockerfile',  '.github/workflows/test.yml') }}
       - name: Cache var-lib-apt
         uses: actions/cache@v3
         with:
           path: var-lib-apt
-          key: var-lib-apt-${{ hashFiles('.github/workflows/test/Dockerfile') }}
+          key: var-lib-apt-${{ hashFiles('.github/workflows/test/Dockerfile', '.github/workflows/test.yml') }}
       - name: inject var-cache-apt into docker
         uses: ./
         with:

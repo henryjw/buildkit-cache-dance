@@ -34,5 +34,5 @@ jobs:
 #        exec docker buildx build --load --secret id=npmrc,src=$HOME/.npmrc -t comment-service:1.0 -f ./apps/comment-service/Dockerfile . $@
         uses: gacts/run-and-post-run@7aec950f3b114c4fcf6012070c3709ecff0eb6f8 # v1.4.0
         with:
-          run: docker buildx build .
+          run: docker buildx build -f ./test/Dockerfile .
 

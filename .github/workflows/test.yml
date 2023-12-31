@@ -38,8 +38,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .github/workflows/test
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
           push: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

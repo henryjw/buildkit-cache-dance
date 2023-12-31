@@ -30,8 +30,9 @@ jobs:
         with:
           cache-source: var-lib-apt
           cache-target: /var/lib/apt
-      - name: Build and push
-        uses: docker/build-push-action@v5
+      - name: Build
+#        exec docker buildx build --load --secret id=npmrc,src=$HOME/.npmrc -t comment-service:1.0 -f ./apps/comment-service/Dockerfile . $@
+        uses: gacts/run-and-post-run@7aec950f3b114c4fcf6012070c3709ecff0eb6f8 # v1.4.0
         with:
-          context: .github/workflows/test
-          push: false
+          run: docker buildx build .
+

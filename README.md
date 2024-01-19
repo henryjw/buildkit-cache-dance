@@ -1,4 +1,4 @@
-# The BuildKit Cache Dance: save `RUN --mount=type=cache` caches on GitHub Actions
+****# The BuildKit Cache Dance: save `RUN --mount=type=cache` caches on GitHub Actions
 
 The BuildKit Cache Dance allows saving [`RUN --mount=type=cache`](https://docs.docker.com/build/guide/mounts/#add-a-cache-mount)
 caches on GitHub Actions.
@@ -65,6 +65,7 @@ jobs:
         with:
           cache-source: var-lib-apt
           cache-target: /var/lib/apt
+          skip-extraction: false
       - name: Build and push
         uses: docker/build-push-action@v5
         with:

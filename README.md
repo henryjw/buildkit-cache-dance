@@ -47,11 +47,13 @@ jobs:
           images: YOUR_IMAGE
       - name: Cache var-cache-apt
         uses: actions/cache@v3
+        id: cache-var-cache-apt
         with:
           path: var-cache-apt
           key: var-cache-apt-${{ hashFiles('Dockerfile') }}
       - name: Cache var-lib-apt
         uses: actions/cache@v3
+        id: cache-var-lib-apt
         with:
           path: var-lib-apt
           key: var-lib-apt-${{ hashFiles('Dockerfile') }}
@@ -65,7 +67,7 @@ jobs:
         with:
           cache-source: var-lib-apt
           cache-target: /var/lib/apt
-          skip-extraction: false
+          skip-extraction: ${{ steps.cache-var-lib-apt.outputs.cache-hit }}
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
